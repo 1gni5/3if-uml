@@ -9,6 +9,9 @@ class Cleaner
 public:
     Cleaner();
     ~Cleaner();
+    t_time getStart();
+    t_time getStop();
+    coord_t getCoordinates();
 
 private:
     long cleanerID;
