@@ -33,12 +33,17 @@ public:
     
     virtual ~Attribute ( );
 
+    Attribute(list<string> fields);
+	
+	
     string getUnit();
 
 //------------------------------------------------------------------ PRIVE
 
-protected:
+private:
 //----------------------------------------------------- Méthodes protégées
+	
+	friend std::ostream& operator<<(std::ostream& cout, const Attribute& obj);
 
 //----------------------------------------------------- Attributs protégés
 	long attributeID;
