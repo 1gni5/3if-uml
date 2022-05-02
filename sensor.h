@@ -3,6 +3,8 @@
 #define Sensor_H
 
 #include "Coordinates.h"
+#include <string>
+using namespace std;
 // Rôle de la classe <Sensor>
 //
 //
@@ -18,7 +20,7 @@ public:
   coord_t getCoordinates();
 
   //-------------------------------------------- Constructeurs - destructeur
-  Sensor(long sensorID, long longitude, long latitude);
+  Sensor(string sensorID, string longitude, string latitude);
 
   //------------------------------------------------------------------ PRIVE
 
