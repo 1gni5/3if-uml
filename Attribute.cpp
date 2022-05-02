@@ -45,7 +45,17 @@ Attribute::Attribute (long attribute , string monUnit, string maDescription)
 	#endif
 } //----- Fin du constructeur Attribute
 
-    
+Attribute::Attribute (string attr , string myUnit, string myDescription)
+{
+	this->attributeID = atol(attr);
+    this->unit = myUnit;
+    this->description = myDescription;
+	
+	#ifdef MAP
+		cout << "Appel au constructeur de <Attribute>" << endl;
+	#endif
+} //----- Fin du constructeur Attribute
+
 
 Attribute::~Attribute ( )
 {	
