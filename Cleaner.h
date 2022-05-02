@@ -1,12 +1,8 @@
 #if ! defined CLEANER_H
 #define CLEANER_H
 
+#include "Coordinates.h"
 #include <ctime>
-
-typedef struct {
-    long longitude;
-    long latitude;
-} coord_t;
 
 class Cleaner
 {
