@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <string>
+#include <list>
 
 //------------------------------------------------------ Include personnel
 #include "Attribute.h"
@@ -30,13 +31,19 @@ string Attribute::getUnit()
 {
         return unit;
 }
+
+std::ostream& operator<<(std::ostream& out, const Attribute& attribute)
+{
+    out << "{ " << attribute.unit << ", " << attribute.description << " }";
+    return out;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Attribute::Attribute (long attribute , string monUnit, string maDescription)
+Attribute::Attribute (string monUnit, string maDescription)
 {
-	this->attributeID = attribute;
     this->unit = monUnit;
     this->description = maDescription;
 	
@@ -45,17 +52,17 @@ Attribute::Attribute (long attribute , string monUnit, string maDescription)
 	#endif
 } //----- Fin du constructeur Attribute
 
-Attribute::Attribute (string attr , string myUnit, string myDescription)
+Attribute::Attribute(list<string> fields)
 {
-	this->attributeID = atol(attr);
-    this->unit = myUnit;
-    this->description = myDescription;
-	
-	#ifdef MAP
+    unit = fields.front();
+    fields.pop_front();
+    description = fields.front();
+    fields.pop_front();
+
+    #ifdef MAP
 		cout << "Appel au constructeur de <Attribute>" << endl;
 	#endif
-} //----- Fin du constructeur Attribute
-
+}//----- Fin du constructeur Attribute
 
 Attribute::~Attribute ( )
 {	
