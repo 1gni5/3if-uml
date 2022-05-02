@@ -32,12 +32,6 @@ string Attribute::getUnit()
         return unit;
 }
 
-std::ostream& operator<<(std::ostream& out, const Attribute& attribute)
-{
-    out << "{ " << attribute.unit << ", " << attribute.description << " }";
-    return out;
-}
-
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -75,5 +69,11 @@ Attribute::~Attribute ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+
+std::ostream& operator<<(std::ostream& out, const Attribute& attribute)
+{
+    out << "{ " << attribute.unit << ", " << attribute.description << " }";
+    return out;
+}
 
 
