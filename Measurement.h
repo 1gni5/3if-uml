@@ -6,9 +6,9 @@ class Measurement{
 
 public:
 
-Measurements();
-Measurements(DateTime timeStamp, long Value);
-~Measurements();
+Measurement();
+Measurement(DateTime timeStamp, long Value);
+~Measurement();
 
 
 DateTime Measurement::getTimeStamp();
