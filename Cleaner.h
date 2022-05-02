@@ -1,4 +1,4 @@
-#if ! defined CLEANER_H
+#if !defined(CLEANER_H)
 #define CLEANER_H
 
 #include "Coordinates.h"
@@ -9,6 +9,7 @@ class Cleaner
 public:
     Cleaner();
     ~Cleaner();
+
 private:
     long cleanerID;
     coord_t location;
