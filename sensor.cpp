@@ -20,12 +20,12 @@ coord_t Sensor::getCoordinates()
 }
 //-------------------------------------------- Constructeurs - destructeur
 
-Sensor::Sensor(long sensorID, long longitude, long latitude)
+Sensor::Sensor(string sensorID, string longitude, string latitude)
 {
-  this->sensorID = sensorID;
+  this->sensorID = stol(sensorID);
   coord_t coordinates;
-  coordinates.latitude = latitude;
-  coordinates.longitude = longitude;
+  coordinates.latitude = stol(latitude);
+  coordinates.longitude = stol(longitude);
   this->coordinates = coordinates;
   #ifdef MAP
     cout << "Appel au constructeur de <Sensor>" << endl;
