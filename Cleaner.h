@@ -8,6 +8,7 @@ class Cleaner
 {
 public:
     Cleaner();
+    Cleaner(long cleanerID, coord_t location, t_time start, t_time stop);
     ~Cleaner();
     t_time getStart();
     t_time getStop();
