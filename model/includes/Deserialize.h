@@ -14,10 +14,6 @@ using std::ifstream;
 using std::map;
 using std::pair;
 
-#include <iostream>
-using std::cout;
-using std::endl;
-
 template <typename T>
 map<string, T> singleKeyDeserialize(
 	const string& path, 
@@ -72,13 +68,10 @@ M deserialize(
 
 	// Skip header if needed
     if (skip_header) { getline(fs, buffer); }
-	
-	cout << "Read process started." << endl;
 
 	while (getline(fs, buffer))
 	{
 		// Break row in fields
-		cout << "Break row into fields" << endl;
 		stringstream ss(buffer);
 		list<string> fields;
 		string field, pk;
@@ -86,14 +79,12 @@ M deserialize(
 		size_t column_index = 0;
 		while (getline(ss, field, ';'))
 		{
-			cout << "For field : " << field << endl;
 			if (column_index == pk_index) { pk = field; }
 			else { fields.push_back(field); }
 			column_index++;
 		}
 
 		// Insert retreived data
-		cout << "Insert record into db" << endl;
 		data.insert(std::make_pair(pk, T(fields)));
 	}
 

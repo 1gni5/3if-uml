@@ -36,10 +36,10 @@ public:
 		);
 
         // Should contains 4 different attributes
-        TS_ASSERT_EQUALS(mp.size(), 4);
+        TS_ASSERT_EQUALS(data.size(), 4);
 
         // Check that the attributes are well deserialized
-        Attribute attr = mp["PM10"];
+        Attribute attr = data["PM10"];
         TS_ASSERT_EQUALS(attr.getUnit(), "µg/m3");
         TS_ASSERT_EQUALS(attr.getDescription(), "concentration de particules fines");
     }

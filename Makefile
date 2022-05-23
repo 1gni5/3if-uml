@@ -1,9 +1,9 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Iincludes
+CXXFLAGS = -std=c++11 -Imodel/includes
 
-LIB_SOURCES = src/Attribute.cpp src/Cleaner.cpp src/Provider.cpp src/Sensor.cpp src/User.cpp \
-src/Measurement.cpp
-MAIN_SOURCES = src/program.cpp
+LIB_SOURCES = model/src/Attribute.cpp model/src/Cleaner.cpp model/src/Provider.cpp \
+model/src/Sensor.cpp model/src/User.cpp model/src/Measurement.cpp
+MAIN_SOURCES = model/src/program.cpp
 
 TESTS_INCLUDES = tests/TestsAttribute.h tests/TestsCleaner.h tests/TestsProvider.h \
 tests/TestsSensor.h tests/TestsUser.h tests/TestsMeasurement.h
