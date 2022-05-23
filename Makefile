@@ -1,4 +1,4 @@
-CXX = clang++
+CXX = g++
 CXXFLAGS = -std=c++11 -Iincludes
 
 LIB_SOURCES = src/Attribute.cpp src/Cleaner.cpp src/Provider.cpp src/Sensor.cpp src/User.cpp
