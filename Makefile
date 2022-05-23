@@ -5,6 +5,7 @@ LIB_SOURCES = model/src/Attribute.cpp model/src/Cleaner.cpp model/src/Provider.c
 model/src/Sensor.cpp model/src/User.cpp model/src/Measurement.cpp
 MAIN_SOURCES = vue/main.cpp
 
+
 TESTS_INCLUDES = tests/TestsAttribute.h tests/TestsCleaner.h tests/TestsProvider.h \
 tests/TestsSensor.h tests/TestsUser.h tests/TestsMeasurement.h
 CXXTEST = tests/cxxtest
