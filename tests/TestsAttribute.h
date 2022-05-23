@@ -3,6 +3,9 @@
 #include <string>
 #include <iostream>
 
+#include <map>
+using std::multimap;
+
 using std::list;
 using std::string;
 
@@ -26,7 +29,11 @@ public:
 
     void testDeserialize(void)
     {
-        map<string, Attribute> mp = singleKeyDeserialize<Attribute>("datasets/attributes.csv", 0, true);
+		map<string, Attribute> data;
+		deserialize<Attribute, map<string, Attribute>>(
+			"datasets/attributes.csv", 
+			data, 0, true
+		);
 
         // Should contains 4 different attributes
         TS_ASSERT_EQUALS(mp.size(), 4);
