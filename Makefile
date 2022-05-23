@@ -1,11 +1,12 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Iincludes
 
-LIB_SOURCES = src/Attribute.cpp src/Cleaner.cpp src/Provider.cpp src/Sensor.cpp src/User.cpp
+LIB_SOURCES = src/Attribute.cpp src/Cleaner.cpp src/Provider.cpp src/Sensor.cpp src/User.cpp \
+src/Measurement.cpp
 MAIN_SOURCES = src/program.cpp
 
 TESTS_INCLUDES = tests/TestsAttribute.h tests/TestsCleaner.h tests/TestsProvider.h \
-tests/TestsSensor.h tests/TestsUser.h
+tests/TestsSensor.h tests/TestsUser.h tests/TestsMeasurement.h
 CXXTEST = tests/cxxtest
 
 LIB_OBJECTS = $(subst .cpp,.o, $(LIB_SOURCES))
