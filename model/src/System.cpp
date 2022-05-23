@@ -28,6 +28,8 @@ pair<double, string> System::ComputeAirQuality(
 {
     cout << " MDR RRRR !ù!" << endl;
     getNearestSensors(latitude, longitude, 5);
+
+    return make_pair(0, "ok");
 }
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -35,8 +37,11 @@ pair<double, string> System::ComputeAirQuality(
 
 System::System()
 {
+    cout << "Building Attributes" << endl;
     deserialize<Attribute>("datasets/attributes.csv", attributes, 0, true);
-    deserialize<Sensor>("datasets/sensor.csv", sensors, 0);
+    cout << "Building Sensors" << endl;
+    deserialize<Sensor>("datasets/sensors.csv", sensors, 0);
+    cout << "Building Measurements" << endl;
     deserialize<Measurement>("datasets/measurements.csv", measurements, 1);
 #ifdef MAP
     cout << "Appel au constructeur de <System>" << endl;
@@ -59,19 +64,19 @@ vector<pair<Sensor, double>> System::getNearestSensors(
     size_t number)
 {
     vector<pair<Sensor, double>> nearestSensors;
+
     for (auto &s : sensors)
     {
         double dist = computeDistance(
             make_pair(s.second.getLatitude(), s.second.getLongitude()),
-            make_pair(latitude, longitude));
+            make_pair(latitude, longitude)
+        );
+
         nearestSensors.push_back(make_pair(s.second, dist));
     }
 
     sort(nearestSensors.begin(), nearestSensors.end(), wayToSort);
 
-    cout << "je suis ici !!! " << endl;
-    for (auto &s : nearestSensors)
-    {
-        cout << s.second << endl;
-    }
+    vector<pair<Sensor, double>> result(nearestSensors.begin(), nearestSensors.begin() + number);
+    return result;
 }
