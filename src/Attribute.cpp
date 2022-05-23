@@ -34,6 +34,22 @@ string Attribute::getDescription()
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
+Attribute::Attribute()
+{
+    #ifdef MAP
+        cout << "Appel au constructeur par défaut de <Attribute>" << endl;
+    #endif
+}//----- Fin de Attribute
+
+Attribute::Attribute(const Attribute &obj)
+{
+    unit = obj.unit;
+    description = obj.description;
+
+    #ifdef MAP
+        cout << "Appel au constructeur de copie de <Attribute>" << endl;
+    #endif
+}//----- Fin de Attribute (constructeur de copie)
 
 Attribute::Attribute(list<string> fields)
 {

@@ -1,14 +1,13 @@
-//---------- Interface de la classe <attribute> --------------------------
-#if ! defined ( ATTRIBUTE_H )
-#define ATTRIBUTE_H
+//---------- Interface de la classe <cleaner> ----------------------------
+#if ! defined ( CLEANER_H )
+#define CLEANER_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include <iostream>
+#include <ctime>
 #include <string>
 #include <list>
 
 using std::string;
-using std::list;
 
 //------------------------------------------------------------- Constantes
 
@@ -16,37 +15,35 @@ using std::list;
 
 //------------------------------------------------------------------------
 
-class Attribute 
+class Cleaner
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
+    time_t getStart();
+    time_t getStop();
+	long getLongitude();
+	long getLatitude();
 
 //-------------------------------------------- Constructeurs - destructeur
-    Attribute ();
-    Attribute ( const Attribute &obj); 
-    Attribute (list<string> fields); 
-    virtual ~Attribute ();
-
-    string getUnit();
-    string getDescription();
+	Cleaner();
+    Cleaner(std::list<string> fields);
+    virtual ~Cleaner();
 
 //------------------------------------------------------------------ PRIVE
 
 private:
 //----------------------------------------------------- Méthodes protégées
-	
-	friend std::ostream& operator<<(
-        std::ostream& cout, 
-        const Attribute& obj
-    );
 
 //----------------------------------------------------- Attributs protégés
-    string unit;
-    string description;
+	long latitude;
+	long longitude;
+    time_t start;
+    time_t stop;
 };
 
-//----------------------- Autres définitions dépendantes de <Attribute>
+//-------------------------- Autres définitions dépendantes de <Attribute>
+time_t parseDateTime(string fdate, string fmt);
 
-#endif // ATTRIBUTE_H
+#endif // CLEANER_H

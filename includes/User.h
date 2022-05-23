@@ -1,14 +1,12 @@
-//---------- Interface de la classe <attribute> --------------------------
-#if ! defined ( ATTRIBUTE_H )
-#define ATTRIBUTE_H
+//---------- Interface de la classe <sensor> ----------------------------
+#if ! defined ( USER_H )
+#define USER_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include <iostream>
 #include <string>
 #include <list>
 
 using std::string;
-using std::list;
 
 //------------------------------------------------------------- Constantes
 
@@ -16,37 +14,28 @@ using std::list;
 
 //------------------------------------------------------------------------
 
-class Attribute 
+class User
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
+	string getSensor();
 
 //-------------------------------------------- Constructeurs - destructeur
-    Attribute ();
-    Attribute ( const Attribute &obj); 
-    Attribute (list<string> fields); 
-    virtual ~Attribute ();
-
-    string getUnit();
-    string getDescription();
+	User();
+    User(std::list<string> fields);
+    virtual ~User();
 
 //------------------------------------------------------------------ PRIVE
 
 private:
 //----------------------------------------------------- Méthodes protégées
-	
-	friend std::ostream& operator<<(
-        std::ostream& cout, 
-        const Attribute& obj
-    );
 
 //----------------------------------------------------- Attributs protégés
-    string unit;
-    string description;
+    string sensor;
 };
 
-//----------------------- Autres définitions dépendantes de <Attribute>
+//-------------------------- Autres définitions dépendantes de <Attribute>
 
-#endif // ATTRIBUTE_H
+#endif // USER_H

@@ -1,5 +1,5 @@
-#if ! defined DESERIALIZE_HPP
-#define DESERIALIZE_HPP
+#if ! defined DESERIALIZE_H
+#define DESERIALIZE_H
 
 #include <string>
 #include <list>
@@ -11,25 +11,24 @@ using std::list;
 using std::string;
 using std::stringstream;
 using std::ifstream;
-using std::multimap;
+using std::map;
 
 template <typename T>
-multimap<string, T> deserialize(
+map<string, T> singleKeyDeserialize(
 	const string& path, 
 	int key_index, 
 	bool skip_header = false) 
 {
 
-    multimap<string, T> result;
+    map<string, T> result;
     ifstream fs(path);
     string buffer;
 
 	// File not open properly
 	if (!fs.is_open()) { exit(1);}
 
-    if (skip_header) {
-        getline(fs, buffer);
-    }
+	// Skip header if needed
+    if (skip_header) { getline(fs, buffer); }
 
 	while (getline(fs, buffer))
 	{

@@ -1,14 +1,13 @@
-//---------- Interface de la classe <attribute> --------------------------
-#if ! defined ( ATTRIBUTE_H )
-#define ATTRIBUTE_H
+//---------- Interface de la classe <cleaner> ----------------------------
+#if ! defined ( PROVIDER_H )
+#define PROVIDER_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include <iostream>
+#include <ctime>
 #include <string>
 #include <list>
 
 using std::string;
-using std::list;
 
 //------------------------------------------------------------- Constantes
 
@@ -16,37 +15,28 @@ using std::list;
 
 //------------------------------------------------------------------------
 
-class Attribute 
+class Provider
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
+	string getCleaner();
 
 //-------------------------------------------- Constructeurs - destructeur
-    Attribute ();
-    Attribute ( const Attribute &obj); 
-    Attribute (list<string> fields); 
-    virtual ~Attribute ();
-
-    string getUnit();
-    string getDescription();
+	Provider();
+    Provider(std::list<string> fields);
+    virtual ~Provider();
 
 //------------------------------------------------------------------ PRIVE
 
 private:
 //----------------------------------------------------- Méthodes protégées
-	
-	friend std::ostream& operator<<(
-        std::ostream& cout, 
-        const Attribute& obj
-    );
 
 //----------------------------------------------------- Attributs protégés
-    string unit;
-    string description;
+    string cleaner;
 };
 
-//----------------------- Autres définitions dépendantes de <Attribute>
+//-------------------------- Autres définitions dépendantes de <Attribute>
 
-#endif // ATTRIBUTE_H
+#endif // PROVIDER_H

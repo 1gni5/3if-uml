@@ -1,14 +1,12 @@
-//---------- Interface de la classe <attribute> --------------------------
-#if ! defined ( ATTRIBUTE_H )
-#define ATTRIBUTE_H
+//---------- Interface de la classe <cleaner> ----------------------------
+#if ! defined ( SENSOR_H )
+#define SENSOR_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include <iostream>
 #include <string>
 #include <list>
 
 using std::string;
-using std::list;
 
 //------------------------------------------------------------- Constantes
 
@@ -16,37 +14,30 @@ using std::list;
 
 //------------------------------------------------------------------------
 
-class Attribute 
+class Sensor
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
+	long getLongitude();
+	long getLatitude();
 
 //-------------------------------------------- Constructeurs - destructeur
-    Attribute ();
-    Attribute ( const Attribute &obj); 
-    Attribute (list<string> fields); 
-    virtual ~Attribute ();
-
-    string getUnit();
-    string getDescription();
+	Sensor();
+    Sensor(std::list<string> fields);
+    virtual ~Sensor();
 
 //------------------------------------------------------------------ PRIVE
 
 private:
 //----------------------------------------------------- Méthodes protégées
-	
-	friend std::ostream& operator<<(
-        std::ostream& cout, 
-        const Attribute& obj
-    );
 
 //----------------------------------------------------- Attributs protégés
-    string unit;
-    string description;
+	long latitude;
+	long longitude;
 };
 
-//----------------------- Autres définitions dépendantes de <Attribute>
+//-------------------------- Autres définitions dépendantes de <Attribute>
 
-#endif // ATTRIBUTE_H
+#endif // SENSOR_H

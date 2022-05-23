@@ -26,15 +26,14 @@ public:
 
     void testDeserialize(void)
     {
-        multimap<string, Attribute> mp = deserialize<Attribute>("datasets/attributes.csv", 0, true);
+        map<string, Attribute> mp = singleKeyDeserialize<Attribute>("datasets/attributes.csv", 0, true);
 
+        // Should contains 4 different attributes
         TS_ASSERT_EQUALS(mp.size(), 4);
 
-        for (auto itr = mp.find("PM10"); itr != mp.end(); itr++)
-        {
-            TS_ASSERT_EQUALS(itr->second.getUnit(), "µg/m3");
-            TS_ASSERT_EQUALS(itr->second.getDescription(), "concentration de particules fines");
-            break;
-        }
+        // Check that the attributes are well deserialized
+        Attribute attr = mp["PM10"];
+        TS_ASSERT_EQUALS(attr.getUnit(), "µg/m3");
+        TS_ASSERT_EQUALS(attr.getDescription(), "concentration de particules fines");
     }
 };
