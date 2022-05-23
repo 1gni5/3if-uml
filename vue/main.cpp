@@ -19,6 +19,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "main.h"
+#include "../controleur/Controleur.h"
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
@@ -57,7 +58,8 @@ int main ()
   time_t date;
   string date_str, jour_str, heure_str;
   //Initialiser le controller ici
-  //Controller c = new Controller()
+  Controleur *c = new Controleur();
+  //c->test();
   do 
   {
     cout<<endl;
@@ -72,7 +74,7 @@ int main ()
     { 
       case '0':
         //Lancer la validation des capteurs avec le controller
-        //c.verifieSensorValidity(); 
+        //c->verifieSensorValidity(); 
         break;
       case '1':
         cout << "Donnez la latitude: " << endl;
@@ -88,7 +90,7 @@ int main ()
         cout << date_str << endl;
         cout << date << endl;
         //Lancer le calcul de la validité de l'air
-        //c.computeAirQuality(longitude, latitude, date);
+        //c->computeAirQuality(longitude, latitude, date);
         break;
       case '2':
         cout << "Au revoir..." << endl;

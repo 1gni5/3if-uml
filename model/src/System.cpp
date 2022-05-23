@@ -43,6 +43,12 @@ System::System()
     deserialize<Sensor>("datasets/sensors.csv", sensors, 0);
     cout << "Building Measurements" << endl;
     deserialize<Measurement>("datasets/measurements.csv", measurements, 1);
+    //cout << "Building Cleaners" << endl;  
+    //deserialize<Cleaner>("datasets/cleaners.csv", cleaners, 0);
+    //cout << "Building Providers" << endl; 
+    //deserialize<Provider>("datasets/providers.csv", providers, 0);
+    //cout << "Building Users" << endl;  
+    //deserialize<User>("datasets/users.csv", users, 0);
 #ifdef MAP
     cout << "Appel au constructeur de <System>" << endl;
 #endif

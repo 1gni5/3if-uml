@@ -2,7 +2,8 @@ CXX = g++
 CXXFLAGS = -std=c++11 -Imodel/includes
 
 LIB_SOURCES = model/src/Attribute.cpp model/src/Cleaner.cpp model/src/Provider.cpp \
-model/src/Sensor.cpp model/src/User.cpp model/src/Measurement.cpp
+model/src/Sensor.cpp model/src/User.cpp model/src/Measurement.cpp model/src/System.cpp \
+controleur/Controleur.cpp
 MAIN_SOURCES = vue/main.cpp
 
 

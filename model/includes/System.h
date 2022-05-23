@@ -12,6 +12,9 @@
 #include "Measurement.h"
 #include "Sensor.h"
 #include "Attribute.h"
+#include "Cleaner.h"
+#include "Provider.h"
+#include "User.h"
 using namespace std;
 
 //------------------------------------------------------------- Constantes
@@ -52,6 +55,9 @@ private:
 	map<string, Attribute> attributes;
 	map<string, Sensor> sensors;
 	multimap<string, Measurement> measurements;
+	//map<string, Cleaner> cleaners;
+	//map<string, Provider> providers;
+	//map<string, User> users;
 };
 
 //-------------------------- Autres définitions dépendantes de <Attribute>
