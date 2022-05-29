@@ -9,8 +9,6 @@
 
 using std::string;
 using std::list;
-using std::cout;
-using std::endl;
 
 //------------------------------------------------------ Include personnel
 #include "Attribute.h"
@@ -21,14 +19,29 @@ using std::endl;
 
 //----------------------------------------------------- Méthodes publiques
 
-string Attribute::getUnit()
+string Attribute::getId(void)
+{
+    return id;
+}
+
+string Attribute::getUnit(void)
 {
     return unit;
 }
 
-string Attribute::getDescription()
+string Attribute::getDescription(void)
 {
     return description;
+}
+
+string Attribute::getUnique(void)
+{
+    return id;
+}
+
+std::vector<size_t>& Attribute::getMeasurements(void)
+{
+    return measurements;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -37,36 +50,30 @@ string Attribute::getDescription()
 Attribute::Attribute()
 {
     #ifdef MAP
-        cout << "Appel au constructeur par défaut de <Attribute>" << endl;
+        std::cout << "Appel au constructeur par défaut de <Attribute>" << std::endl;
     #endif
 }//----- Fin de Attribute
 
-Attribute::Attribute(const Attribute &obj)
-{
-    unit = obj.unit;
-    description = obj.description;
-
-    #ifdef MAP
-        cout << "Appel au constructeur de copie de <Attribute>" << endl;
-    #endif
-}//----- Fin de Attribute (constructeur de copie)
-
 Attribute::Attribute(list<string> fields)
 {
+    id = fields.front();
+    fields.pop_front();
+
     unit = fields.front();
     fields.pop_front();
+    
     description = fields.front();
     fields.pop_front();
 
     #ifdef MAP
-		cout << "Appel au constructeur de <Attribute>" << endl;
+		std::cout << "Appel au constructeur de <Attribute>" << std::endl;
 	#endif
 }//----- Fin du constructeur Attribute
 
 Attribute::~Attribute ( )
 {	
 	#ifdef MAP
-		cout << "Appel au destructeur de <Attribute>" << endl;
+		std::cout << "Appel au destructeur de <Attribute>" << std::endl;
 	#endif
 } //----- Fin de ~Attribute
 
@@ -74,11 +81,7 @@ Attribute::~Attribute ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
-std::ostream& operator<<(std::ostream& os, const Attribute& attribute)
+void Attribute::updateBackRefs(void)
 {
-    os << "{ " << attribute.unit << ", " << attribute.description << " }";
-    return os;
+    // Aucune référence à mettre à jour
 }
-
-

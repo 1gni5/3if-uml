@@ -11,7 +11,7 @@ using std::string;
 
 //------------------------------------------------------ Include personnel
 #include "Cleaner.h"
-#include "Deserialize.h"
+#include "Model.h"
 
 class TestsCleaner : public CxxTest::TestSuite
 {
@@ -19,6 +19,7 @@ public:
     void testConstructor(void)
     {
         list<string> fields = {
+            "Cleaner0",
             "45.333333", 
             "1.333333", 
             "2019-02-01 12:00:00", 
@@ -26,20 +27,20 @@ public:
         };
         Cleaner cleaner(fields);
 
+        TS_ASSERT_EQUALS(cleaner.getUnique(), "Cleaner0");
         TS_ASSERT_EQUALS((int) cleaner.getLatitude(), 45);
         TS_ASSERT_EQUALS((int) cleaner.getLongitude(), 1);
     }
 
-	void testDeserialize(void)
-	{
-		map<string, Cleaner> mp = singleKeyDeserialize<Cleaner>("datasets/cleaners.csv", 0);
+	void testModel(void)
+    {
+        Model<Cleaner>::populate("datasets/cleaners.csv");
+        TS_ASSERT_EQUALS(Model<Cleaner>::getAll().size(), 2);
+        
+        Cleaner cleaner = Model<Cleaner>::get("Cleaner0");
 
-		// Should contains 2 different cleaners
-		TS_ASSERT_EQUALS(mp.size(), 2);
-
-		// Check that the cleaners are well deserialized
-		Cleaner cleaner = mp["Cleaner0"];
-		TS_ASSERT_EQUALS((int) cleaner.getLatitude(), 45);
-		TS_ASSERT_EQUALS((int) cleaner.getLongitude(), 1);
-	}
+        TS_ASSERT_EQUALS(cleaner.getUnique(), "Cleaner0");
+        TS_ASSERT_EQUALS((int) cleaner.getLatitude(), 45);
+        TS_ASSERT_EQUALS((int) cleaner.getLongitude(), 1);
+    }
 };

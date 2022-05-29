@@ -1,4 +1,4 @@
-//---------- Réalisation de la classe <cleaner> --------------------------
+//---------- Réalisation de la classe <provider> -------------------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -8,9 +8,11 @@
 #include <list>
 #include <ctime>
 #include <cstdlib>
+#include <vector>
 
 using std::string;
 using std::list;
+using std::vector;
 
 //------------------------------------------------------ Include personnel
 #include "Provider.h"
@@ -21,38 +23,48 @@ using std::list;
 
 //----------------------------------------------------- Méthodes publiques
 
+string Provider::getUnique(void)
+{ return id; }
 
-string Provider::getCleaner()
-{ return cleaner; }
+Cleaner Provider::getCleaner(void)
+{ return *cleaner; }
 
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Provider::Provider ()
+Provider::Provider (void)
 {
 	#ifdef MAP
-		cout << "Appel au constructeur de <Provider>" << endl;
+		std::cout << "Appel au constructeur de <Provider>" << std::endl;
 	#endif
 } //---- Fin du constructeur Provider
 
 Provider::Provider (list<string> fields)
 {
     // Extract latitude and longitude
-    cleaner = fields.front();
+    id = fields.front();
+
+	string unique = fields.front();
+	cleaner = &Model<Cleaner>::get(unique);
 
     #ifdef MAP
-        cout << "Appel au constructeur de <Provider>" << endl;
+        std::cout << "Appel au constructeur de <Provider>" << std::endl;
     #endif
 } //----- Fin du constructeur Provider
 
-Provider::~Provider ( )
+Provider::~Provider (void)
 {	
 	#ifdef MAP
-		cout << "Appel au destructeur de <Provider>" << endl;
+		std::cout << "Appel au destructeur de <Provider>" << std::endl;
 	#endif
 } //----- Fin de ~Provider
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+
+void Provider::updateBackRefs(void)
+{
+	// Nothing to do here
+}

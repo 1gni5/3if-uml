@@ -3,12 +3,13 @@
 #define ATTRIBUTE_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include <iostream>
 #include <string>
 #include <list>
+#include <vector>
 
 using std::string;
-using std::list;
+
+#include "Model.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -23,28 +24,37 @@ class Attribute
 public:
 //----------------------------------------------------- Méthodes publiques
 
-//-------------------------------------------- Constructeurs - destructeur
-    Attribute ();
-    Attribute ( const Attribute &obj); 
-    Attribute (list<string> fields); 
-    virtual ~Attribute ();
+    string getId(void);
+    string getUnit(void);
+    string getDescription(void);
 
-    string getUnit();
-    string getDescription();
+    std::vector<size_t>& getMeasurements(void);
+
+//-------------------------------------------- Constructeurs - destructeur
+    Attribute (void);
+    Attribute (std::list<string> fields); 
+    virtual ~Attribute ();
 
 //------------------------------------------------------------------ PRIVE
 
 private:
 //----------------------------------------------------- Méthodes protégées
-	
-	friend std::ostream& operator<<(
-        std::ostream& cout, 
-        const Attribute& obj
-    );
+    
+    void updateBackRefs(void);
+    string getUnique(void);
 
 //----------------------------------------------------- Attributs protégés
+
+    string id;
     string unit;
     string description;
+
+    // Fonctionnement interne de Model<>
+    size_t _id;
+    std::vector<size_t> measurements;
+
+    friend class Model<Attribute>;
+    friend class Measurement;
 };
 
 //----------------------- Autres définitions dépendantes de <Attribute>

@@ -11,30 +11,35 @@ using std::string;
 
 //------------------------------------------------------ Include personnel
 #include "Provider.h"
-#include "Deserialize.h"
+#include "Cleaner.h"
+#include "Model.h"
 
 class TestsProvider : public CxxTest::TestSuite
 {
 public:
+
+	void setUp()
+    {
+        Model<Cleaner>::populate("datasets/cleaners.csv");
+    }
+
     void testConstructor(void)
     {
         list<string> fields = {
+			"Provider0",
 			"Cleaner0"
-        };
-        Provider provider(fields);
+		};
+		Provider provider(fields);
 
-        TS_ASSERT_EQUALS(provider.getCleaner(), "Cleaner0");
-    }
+		TS_ASSERT_EQUALS(provider.getUnique(), "Provider0");
+		TS_ASSERT_EQUALS(provider.getCleaner().getUnique(), "Cleaner0");
+		TS_ASSERT_EQUALS((int) provider.getCleaner().getLatitude(), 45);
+		TS_ASSERT_EQUALS((int) provider.getCleaner().getLongitude(), 1);
+	}
 
-	void testDeserialize(void)
+	void testModel(void)
 	{
-		map<string, Provider> mp = singleKeyDeserialize<Provider>("datasets/providers.csv", 0);
-
-		// Should contains 2 different providers
-		TS_ASSERT_EQUALS(mp.size(), 2);
-
-		// Check that the providers are well deserialized
-		Provider provider = mp["Provider0"];
-        TS_ASSERT_EQUALS(provider.getCleaner(), "Cleaner0");
+		Model<Provider>::populate("datasets/providers.csv");
+		TS_ASSERT_EQUALS(Model<Provider>::getAll().size(), 2);
 	}
 };

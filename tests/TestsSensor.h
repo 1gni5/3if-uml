@@ -11,7 +11,7 @@ using std::string;
 
 //------------------------------------------------------ Include personnel
 #include "Sensor.h"
-#include "Deserialize.h"
+#include "Model.h"
 
 class TestsSensor : public CxxTest::TestSuite
 {
@@ -19,25 +19,25 @@ public:
     void testConstructor(void)
     {
         list<string> fields = {
+            "Sensor0",
             "44", 
-            "-1", 
+            "-1"
         };
         Sensor sensor(fields);
 
+        TS_ASSERT_EQUALS(sensor.getId(), "Sensor0");
         TS_ASSERT_EQUALS((int) sensor.getLatitude(), 44);
         TS_ASSERT_EQUALS((int) sensor.getLongitude(), -1);
     }
 
-	void testDeserialize(void)
-	{
-		map<string, Sensor> mp = singleKeyDeserialize<Sensor>("datasets/sensors.csv", 0);
+    void testModel(void)
+    {
+        Model<Sensor>::populate("datasets/sensors.csv");
+        TS_ASSERT_EQUALS(Model<Sensor>::getAll().size(), 100);
 
-		// Should contains 100 different sensors
-		TS_ASSERT_EQUALS(mp.size(), 100);
-
-		// Check that the sensors are well deserialized
-		Sensor sensor = mp["Sensor0"];
-		TS_ASSERT_EQUALS((int) sensor.getLatitude(), 44);
-		TS_ASSERT_EQUALS((int) sensor.getLongitude(), -1);
-	}
+        Sensor sensor = Model<Sensor>::get("Sensor0");
+        TS_ASSERT_EQUALS(sensor.getId(), "Sensor0");
+        TS_ASSERT_EQUALS((int) sensor.getLatitude(), 44);
+        TS_ASSERT_EQUALS((int) sensor.getLongitude(), -1);
+    }
 };

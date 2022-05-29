@@ -3,9 +3,6 @@
 #include <string>
 #include <iostream>
 
-#include <map>
-using std::multimap;
-
 using std::list;
 using std::string;
 
@@ -13,34 +10,30 @@ using std::string;
 
 //------------------------------------------------------ Include personnel
 #include "Attribute.h"
-#include "Deserialize.h"
+#include "Model.h"
 
 class TestsAttribute : public CxxTest::TestSuite
 {
 public:
     void testConstructor(void)
     {
-        list<string> fields = {"unit", "description"};
+        list<string> fields = {"O3", "µg/m3", "concentration d'ozone"};
         Attribute attribute(fields);
 
-        TS_ASSERT_EQUALS(attribute.getUnit(), "unit");
-        TS_ASSERT_EQUALS(attribute.getDescription(), "description");
+        TS_ASSERT_EQUALS(attribute.getId(), "O3");
+        TS_ASSERT_EQUALS(attribute.getUnit(), "µg/m3");
+        TS_ASSERT_EQUALS(attribute.getDescription(), "concentration d'ozone");
     }
 
-    void testDeserialize(void)
+    void testModel(void)
     {
-		map<string, Attribute> data;
-		deserialize<Attribute, map<string, Attribute>>(
-			"datasets/attributes.csv", 
-			data, 0, true
-		);
+        Model<Attribute>::populate("datasets/attributes.csv");
+        TS_ASSERT_EQUALS(Model<Attribute>::getAll().size(), 5);
+        
+        Attribute& attribute = Model<Attribute>::get("O3");
 
-        // Should contains 4 different attributes
-        TS_ASSERT_EQUALS(data.size(), 4);
-
-        // Check that the attributes are well deserialized
-        Attribute attr = data["PM10"];
-        TS_ASSERT_EQUALS(attr.getUnit(), "µg/m3");
-        TS_ASSERT_EQUALS(attr.getDescription(), "concentration de particules fines");
+        TS_ASSERT_EQUALS(attribute.getId(), "O3");
+        TS_ASSERT_EQUALS(attribute.getUnit(), "µg/m3");
+        TS_ASSERT_EQUALS(attribute.getDescription(), "concentration d'ozone");
     }
 };

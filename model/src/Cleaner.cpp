@@ -22,6 +22,9 @@ using std::tm;
 
 //----------------------------------------------------- Méthodes publiques
 
+string Cleaner::getUnique(void)
+{ return id; }
+
 time_t Cleaner::getStart()
 { return start; }
 
@@ -41,12 +44,15 @@ long Cleaner::getLatitude()
 Cleaner::Cleaner ()
 {
 	#ifdef MAP
-		cout << "Appel au constructeur de <Cleaner>" << endl;
+		std::cout << "Appel au constructeur de <Cleaner>" << std::endl;
 	#endif
 } //---- Fin du constructeur Cleaner
 
 Cleaner::Cleaner (list<string> fields)
 {
+    id = fields.front();
+    fields.pop_front();
+
     // Extract latitude and longitude
     latitude = atol(fields.front().c_str());
     fields.pop_front();
@@ -62,24 +68,24 @@ Cleaner::Cleaner (list<string> fields)
     fields.pop_front();
 
     #ifdef MAP
-        cout << "Appel au constructeur de <Cleaner>" << endl;
+        std::cout << "Appel au constructeur de <Cleaner>" << std::endl;
     #endif
 } //----- Fin du constructeur Cleaner
 
 Cleaner::~Cleaner ( )
 {	
 	#ifdef MAP
-		cout << "Appel au destructeur de <Cleaner>" << endl;
+		std::cout << "Appel au destructeur de <Cleaner>" << std::endl;
 	#endif
 } //----- Fin de ~Cleaner
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-time_t parseDateTime(string fdate, string fmt)
+
+void Cleaner::updateBackRefs(void)
 {
-    tm time;
-//    strptime(fdate.c_str(), "%Y-%m-%d %H:%M:%S", &time);
-    strptime(fdate.c_str(), fmt.c_str(), &time);
-    return mktime(&time);
+    // Nothing to do here
 }
+
+

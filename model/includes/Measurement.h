@@ -1,4 +1,4 @@
-//---------- Interface de la classe <measurement> ----------------------------
+//---------- Interface de la classe <measurement> ------------------------
 #if ! defined ( MEASUREMENT_H )
 #define MEASUREMENT_H
 
@@ -8,6 +8,9 @@
 #include <list>
 
 using std::string;
+
+#include "Attribute.h"
+#include "Sensor.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -21,9 +24,11 @@ class Measurement
 
 public:
 //----------------------------------------------------- Méthodes publiques
+
 	time_t getTimestamp();
-	string getUnit();
 	double getValue();
+	Attribute* getAttribute();
+	Sensor* getSensor();
 
 //-------------------------------------------- Constructeurs - destructeur
 	Measurement();
@@ -35,13 +40,24 @@ public:
 private:
 //----------------------------------------------------- Méthodes protégées
 
+	void updateBackRefs(void);
+	string getUnique(void);
+
 //----------------------------------------------------- Attributs protégés
+
 	time_t timestamp;
-	string unit;
 	double value;
+	string idUnit;
+	string idSensor;
+
+	// Fonctionnement interne de Model<>
+	size_t _id;
+	Attribute *unit;
+	Sensor *sensor;
+
+	friend class Model<Measurement>;
 };
 
 //-------------------------- Autres définitions dépendantes de <Attribute>
-time_t parseDateTime(string fdate, string fmt);
 
 #endif // MEASUREMENT_H
