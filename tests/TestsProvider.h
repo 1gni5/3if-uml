@@ -19,10 +19,12 @@ public:
     void testConstructor(void)
     {
         list<string> fields = {
+			"Provider0",
 			"Cleaner0"
         };
         Provider provider(fields);
 
+		TS_ASSERT_EQUALS(provider.getId(), "Provider0");
         TS_ASSERT_EQUALS(provider.getCleaner(), "Cleaner0");
     }
 

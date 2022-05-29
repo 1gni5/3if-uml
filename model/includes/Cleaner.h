@@ -21,10 +21,11 @@ class Cleaner
 
 public:
 //----------------------------------------------------- Méthodes publiques
+    string getId();
     time_t getStart();
     time_t getStop();
-	long getLongitude();
-	long getLatitude();
+	double getLongitude();
+	double getLatitude();
 
 //-------------------------------------------- Constructeurs - destructeur
 	Cleaner();
@@ -37,8 +38,9 @@ private:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	long latitude;
-	long longitude;
+    string id;
+	double latitude;
+	double longitude;
     time_t start;
     time_t stop;
 };

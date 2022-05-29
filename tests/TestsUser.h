@@ -18,10 +18,12 @@ public:
     void testConstructor(void)
     {
         list<string> fields = {
+			"User0",
 			"Sensor70"
         };
         User user(fields);
 
+		TS_ASSERT_EQUALS(user.getId(), "User0");
         TS_ASSERT_EQUALS(user.getSensor(), "Sensor70");
     }
 

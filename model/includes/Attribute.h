@@ -30,6 +30,7 @@ public:
     Attribute (list<string> fields); 
     virtual ~Attribute ();
 
+    string getId();
     string getUnit();
     string getDescription();
 
@@ -42,6 +43,7 @@ private:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    string id;
     string unit;
     string description;
 

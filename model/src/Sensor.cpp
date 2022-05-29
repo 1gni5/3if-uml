@@ -20,12 +20,17 @@ using std::list;
 
 //----------------------------------------------------- Méthodes publiques
 
-long Sensor::getLongitude()
+string Sensor::getId()
+{
+    return id;
+}
+
+double Sensor::getLongitude()
 { 
     return longitude; 
 }
 
-long Sensor::getLatitude()
+double Sensor::getLatitude()
 { 
     return latitude; 
 }
@@ -53,10 +58,13 @@ Sensor::Sensor ()
 
 Sensor::Sensor (list<string> fields)
 {
-    latitude = atol(fields.front().c_str());
+    id = fields.front();
     fields.pop_front();
 
-    longitude = atol(fields.front().c_str());
+    latitude = atof(fields.front().c_str());
+    fields.pop_front();
+
+    longitude = atof(fields.front().c_str());
     fields.pop_front();
 
     #ifdef MAP

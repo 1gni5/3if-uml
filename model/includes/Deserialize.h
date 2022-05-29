@@ -41,11 +41,8 @@ M deserialize(
 		size_t column_index = 0;
 		while (getline(ss, field, ';'))
 		{
-			if (column_index == pk_index) { 
-				pk = field; 
-				if (!delete_key) { fields.push_back(field); }
-			}
-			else { fields.push_back(field); }
+			if (column_index == pk_index) { pk = field; }
+			fields.push_back(field);
 			column_index++;
 		}
 

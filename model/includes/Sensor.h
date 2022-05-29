@@ -22,8 +22,10 @@ class Sensor
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	long getLongitude();
-	long getLatitude();
+
+	string getId();
+	double getLongitude();
+	double getLatitude();
 
 	void addMeasurement(const Measurement& m);
 	std::list<Measurement>& getMeasurements();
@@ -39,8 +41,9 @@ private:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	long latitude;
-	long longitude;
+	string id;
+	double latitude;
+	double longitude;
 
 	std::list<Measurement> measurements;
 };

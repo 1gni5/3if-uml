@@ -56,7 +56,6 @@ Measurement::Measurement ()
 
 Measurement::Measurement (list<string> fields)
 {
-    
     timestamp = parseDateTime(fields.front(), "%Y-%m-%d %H:%M:%S");
     fields.pop_front();
 
@@ -66,7 +65,7 @@ Measurement::Measurement (list<string> fields)
     unit = fields.front();
     fields.pop_front();
 
-    value = atol(fields.front().c_str());
+    value = atof(fields.front().c_str());
     fields.pop_front();
 
     #ifdef MAP

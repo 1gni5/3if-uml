@@ -19,11 +19,13 @@ public:
     void testConstructor(void)
     {
         list<string> fields = {
+            "Sensor0",
             "44", 
             "-1", 
         };
         Sensor sensor(fields);
 
+        TS_ASSERT_EQUALS(sensor.getId(), "Sensor0");
         TS_ASSERT_EQUALS((int) sensor.getLatitude(), 44);
         TS_ASSERT_EQUALS((int) sensor.getLongitude(), -1);
     }

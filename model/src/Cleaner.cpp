@@ -23,6 +23,11 @@ using std::tm;
 
 //----------------------------------------------------- Méthodes publiques
 
+string Cleaner::getId()
+{
+    return id;
+}
+
 time_t Cleaner::getStart()
 { 
     return start; 
@@ -33,12 +38,12 @@ time_t Cleaner::getStop()
     return stop; 
 }
 
-long Cleaner::getLongitude()
+double Cleaner::getLongitude()
 { 
     return longitude; 
 }
 
-long Cleaner::getLatitude()
+double Cleaner::getLatitude()
 { 
     return latitude; 
 }
@@ -56,11 +61,14 @@ Cleaner::Cleaner ()
 
 Cleaner::Cleaner (list<string> fields)
 {
+    id = fields.front();
+    fields.pop_front();
+    
     // Extract latitude and longitude
-    latitude = atol(fields.front().c_str());
+    latitude = atof(fields.front().c_str());
     fields.pop_front();
 
-    longitude = atol(fields.front().c_str());
+    longitude = atof(fields.front().c_str());
     fields.pop_front();
 
     // Extract start and stop dates

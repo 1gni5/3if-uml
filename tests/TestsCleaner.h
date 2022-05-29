@@ -19,6 +19,7 @@ public:
     void testConstructor(void)
     {
         list<string> fields = {
+            "cleaner0",
             "45.333333", 
             "1.333333", 
             "2019-02-01 12:00:00", 
@@ -26,6 +27,7 @@ public:
         };
         Cleaner cleaner(fields);
 
+        TS_ASSERT_EQUALS(cleaner.getId(), "cleaner0");
         TS_ASSERT_EQUALS((int) cleaner.getLatitude(), 45);
         TS_ASSERT_EQUALS((int) cleaner.getLongitude(), 1);
     }

@@ -21,6 +21,10 @@ using std::list;
 
 //----------------------------------------------------- Méthodes publiques
 
+string Provider::getId()
+{
+	return id;
+}
 
 string Provider::getCleaner()
 { 
@@ -40,7 +44,11 @@ Provider::Provider ()
 
 Provider::Provider (list<string> fields)
 {
+	id = fields.front();
+	fields.pop_front();
+
     cleaner = fields.front();
+	fields.pop_front();
 
     #ifdef MAP
         std::cout << "Appel au constructeur de <Provider>" << std::endl;

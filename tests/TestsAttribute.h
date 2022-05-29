@@ -20,9 +20,10 @@ class TestsAttribute : public CxxTest::TestSuite
 public:
     void testConstructor(void)
     {
-        list<string> fields = {"unit", "description"};
+        list<string> fields = {"id", "unit", "description"};
         Attribute attribute(fields);
 
+        TS_ASSERT_EQUALS(attribute.getId(), "id");
         TS_ASSERT_EQUALS(attribute.getUnit(), "unit");
         TS_ASSERT_EQUALS(attribute.getDescription(), "description");
     }

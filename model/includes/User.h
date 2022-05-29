@@ -20,6 +20,7 @@ class User
 
 public:
 //----------------------------------------------------- Méthodes publiques
+    string getId();
 	string getSensor();
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -33,6 +34,7 @@ private:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    string id;
     string sensor;
 };
 

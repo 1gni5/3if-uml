@@ -19,6 +19,11 @@ using std::list;
 
 //----------------------------------------------------- Méthodes publiques
 
+string Attribute::getId()
+{
+    return id;
+}
+
 string Attribute::getUnit()
 {
     return unit;
@@ -51,8 +56,12 @@ Attribute::Attribute()
 
 Attribute::Attribute(list<string> fields)
 {
+    id = fields.front();
+    fields.pop_front();
+
     unit = fields.front();
     fields.pop_front();
+    
     description = fields.front();
     fields.pop_front();
 

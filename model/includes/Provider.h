@@ -21,6 +21,7 @@ class Provider
 
 public:
 //----------------------------------------------------- Méthodes publiques
+    string getId();
 	string getCleaner();
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -34,6 +35,7 @@ private:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    string id;
     string cleaner;
 };
 

@@ -19,6 +19,10 @@ using std::list;
 
 //----------------------------------------------------- Méthodes publiques
 
+string User::getId()
+{
+	return id;
+}
 
 string User::getSensor()
 { 
@@ -38,7 +42,11 @@ User::User ()
 
 User::User (list<string> fields)
 {
+	id = fields.front();
+	fields.pop_front();
+
     sensor = fields.front();
+	fields.pop_front();
 
     #ifdef MAP
         std::cout << "Appel au constructeur de <User>" << std::endl;
