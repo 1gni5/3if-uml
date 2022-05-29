@@ -36,10 +36,13 @@ class System
 public:
 //----------------------------------------------------- Méthodes publiques
 
+	std::list<Sensor> getAllSensors();
+	Sensor getSensor(string id);
+
     std::list<Sensor> getNearestSensors(
         double latitude, 
         double longitude, 
-        int nbSensors
+        size_t nbSensors
     );
 
     unordered_map<string, double> computeAirQuality(
@@ -66,7 +69,14 @@ public:
     );
 
 //-------------------------------------------- Constructeurs - destructeur
-    System ();
+    System (
+		string attributesFile = "datasets/attributes.csv",
+		string cleanersFile = "datasets/cleaners.csv",
+		string measurementsFile = "datasets/measurements.csv",
+		string providersFile = "datasets/providers.csv",
+		string sensorsFile = "datasets/sensors.csv",
+		string usersFile = "datasets/users.csv"
+	);
     virtual ~System ();
 
 //------------------------------------------------------------------ PRIVE

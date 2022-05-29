@@ -36,7 +36,7 @@ public:
         multimap<string, Measurement> data;
         deserialize<Measurement, multimap<string, Measurement>>(
             "datasets/measurements-50.csv", 
-            data, 0, true, false
+            data, 0
         );
 
         // Should contains 50 different measurements

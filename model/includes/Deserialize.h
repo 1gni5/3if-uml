@@ -19,8 +19,7 @@ M deserialize(
 	const string& path,
 	M& data,
 	size_t pk_index,
-	bool skip_header = false,
-	bool delete_key = true)
+	bool skip_header = false)
 {
 	ifstream fs(path);
 	string buffer;
@@ -30,6 +29,7 @@ M deserialize(
 
 	// Skip header if needed
     if (skip_header) { getline(fs, buffer); }
+
 
 	while (getline(fs, buffer))
 	{
@@ -45,6 +45,8 @@ M deserialize(
 			fields.push_back(field);
 			column_index++;
 		}
+
+		// std::cout << "ROW NUMBER : " << pk << std::endl;
 
 		// Insert retreived data
 		data.insert(std::make_pair(pk, T(fields)));

@@ -17,21 +17,31 @@ using std::make_pair;
 #include "Utilities.h"
 
 //------------------------------------------------------------- Constantes
-bool MyComparator(pair<Sensor, unsigned int> a, pair<Sensor, unsigned int> b) {
-    if(a.second > b.second) {
-        return true;
-    } 
-    return false;
-}
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
 
+std::list<Sensor> System::getAllSensors()
+{
+    std::list<Sensor> sensorsList;
+    for (auto& sensor : sensors)
+    {
+        sensorsList.push_back(sensor.second);
+    }
+
+    return sensorsList;
+}
+
+Sensor System::getSensor(string id)
+{
+    return sensors[id];
+}
+
 std::list<Sensor> System::getNearestSensors(
     double latitude, 
     double longitude, 
-    int nbSensors
+    size_t nbSensors
 ){
     multimap<double, Sensor> nearestSensors;
     list<Sensor> results;
@@ -212,36 +222,42 @@ std::list<Sensor> System::orderSensorsByATMO(
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
-System::System()
-{
+System::System (
+		string attributesFile,
+		string cleanersFile,
+		string measurementsFile,
+		string providersFile,
+		string sensorsFile,
+		string usersFile
+){
     // Charge le fichier CSV en mémoire
     deserialize<Attribute>(
-        "datasets/attributes.csv",
+        attributesFile,
         attributes, 0, true
     );
 
     deserialize<Cleaner>(
-        "datasets/cleaners.csv",
+        cleanersFile,
         cleaners, 0
     );
 
     deserialize<Measurement>(
-        "datasets/measurements.csv",
-        measurements, 0, true, false
+        measurementsFile,
+        measurements, 0
     );
 
     deserialize<Provider>(
-        "datasets/providers.csv",
+        providersFile,
         providers, 0
     );
 
     deserialize<Sensor>(
-        "datasets/sensors.csv",
+        sensorsFile,
         sensors, 0
     );
 
     deserialize<User>(
-        "datasets/users.csv",
+        usersFile,
         users, 0
     );
     
