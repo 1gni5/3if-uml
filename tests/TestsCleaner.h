@@ -32,13 +32,17 @@ public:
 
 	void testDeserialize(void)
 	{
-		map<string, Cleaner> mp = singleKeyDeserialize<Cleaner>("datasets/cleaners.csv", 0);
+        map<string, Cleaner> data;
+        deserialize<Cleaner>(
+            "datasets/cleaners.csv", 
+            data, 0, false
+        );
 
 		// Should contains 2 different cleaners
-		TS_ASSERT_EQUALS(mp.size(), 2);
+		TS_ASSERT_EQUALS(data.size(), 2);
 
 		// Check that the cleaners are well deserialized
-		Cleaner cleaner = mp["Cleaner0"];
+		Cleaner& cleaner = data["Cleaner0"];
 		TS_ASSERT_EQUALS((int) cleaner.getLatitude(), 45);
 		TS_ASSERT_EQUALS((int) cleaner.getLongitude(), 1);
 	}

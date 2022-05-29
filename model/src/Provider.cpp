@@ -1,4 +1,4 @@
-//---------- Réalisation de la classe <cleaner> --------------------------
+//---------- Réalisation de la classe <Provider> -------------------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -23,7 +23,9 @@ using std::list;
 
 
 string Provider::getCleaner()
-{ return cleaner; }
+{ 
+	return cleaner; 
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -32,24 +34,23 @@ string Provider::getCleaner()
 Provider::Provider ()
 {
 	#ifdef MAP
-		cout << "Appel au constructeur de <Provider>" << endl;
+		std::cout << "Appel au constructeur de <Provider>" << std::endl;
 	#endif
 } //---- Fin du constructeur Provider
 
 Provider::Provider (list<string> fields)
 {
-    // Extract latitude and longitude
     cleaner = fields.front();
 
     #ifdef MAP
-        cout << "Appel au constructeur de <Provider>" << endl;
+        std::cout << "Appel au constructeur de <Provider>" << std::endl;
     #endif
 } //----- Fin du constructeur Provider
 
 Provider::~Provider ( )
 {	
 	#ifdef MAP
-		cout << "Appel au destructeur de <Provider>" << endl;
+		std::cout << "Appel au destructeur de <Provider>" << std::endl;
 	#endif
 } //----- Fin de ~Provider
 

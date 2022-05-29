@@ -1,4 +1,4 @@
-//---------- Interface de la classe <measurement> ----------------------------
+//---------- Interface de la classe <Measurement> ----------------------------
 #if ! defined ( MEASUREMENT_H )
 #define MEASUREMENT_H
 
@@ -22,6 +22,7 @@ class Measurement
 public:
 //----------------------------------------------------- Méthodes publiques
 	time_t getTimestamp();
+	string getSensor();
 	string getUnit();
 	double getValue();
 
@@ -37,11 +38,11 @@ private:
 
 //----------------------------------------------------- Attributs protégés
 	time_t timestamp;
+	string sensor;
 	string unit;
 	double value;
 };
 
-//-------------------------- Autres définitions dépendantes de <Attribute>
-time_t parseDateTime(string fdate, string fmt);
+//------------------------ Autres définitions dépendantes de <Measurement>
 
 #endif // MEASUREMENT_H

@@ -10,6 +10,8 @@
 using std::string;
 using std::list;
 
+#include "Measurement.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -25,28 +27,27 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
     Attribute ();
-    Attribute ( const Attribute &obj); 
     Attribute (list<string> fields); 
     virtual ~Attribute ();
 
     string getUnit();
     string getDescription();
 
+    void addMeasurement(const Measurement& m);
+    std::list<Measurement>& getMeasurements();
+
 //------------------------------------------------------------------ PRIVE
 
 private:
 //----------------------------------------------------- Méthodes protégées
-	
-	friend std::ostream& operator<<(
-        std::ostream& cout, 
-        const Attribute& obj
-    );
 
 //----------------------------------------------------- Attributs protégés
     string unit;
     string description;
+
+    std::list<Measurement> measurements;
 };
 
-//----------------------- Autres définitions dépendantes de <Attribute>
+//-------------------------- Autres définitions dépendantes de <Attribute>
 
 #endif // ATTRIBUTE_H

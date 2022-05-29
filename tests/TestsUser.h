@@ -27,13 +27,17 @@ public:
 
 	void testDeserialize(void)
 	{
-		map<string, User> mp = singleKeyDeserialize<User>("datasets/users.csv", 0);
+		map<string, User> data;
+		deserialize<User>(
+			"datasets/users.csv", 
+			data, 0
+		);
 
 		// Should contains 2 different users
-		TS_ASSERT_EQUALS(mp.size(), 2);
+		TS_ASSERT_EQUALS(data.size(), 2);
 
 		// Check that the users are well deserialized
-		User user = mp["User0"];
+		User user = data["User0"];
         TS_ASSERT_EQUALS(user.getSensor(), "Sensor70");
 	}
 };

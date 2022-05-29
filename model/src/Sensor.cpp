@@ -1,4 +1,4 @@
-//---------- Réalisation de la classe <sensor> --------------------------
+//---------- Réalisation de la classe <Sensor> ---------------------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -21,10 +21,24 @@ using std::list;
 //----------------------------------------------------- Méthodes publiques
 
 long Sensor::getLongitude()
-{ return longitude; }
+{ 
+    return longitude; 
+}
 
 long Sensor::getLatitude()
-{ return latitude; }
+{ 
+    return latitude; 
+}
+
+void Sensor::addMeasurement(const Measurement& m)
+{
+    measurements.push_back(m);
+}
+
+std::list<Measurement>& Sensor::getMeasurements()
+{
+    return measurements;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -33,13 +47,12 @@ long Sensor::getLatitude()
 Sensor::Sensor ()
 {
 	#ifdef MAP
-		cout << "Appel au constructeur de <Sensor>" << endl;
+		std::cout << "Appel au constructeur de <Sensor>" << std::endl;
 	#endif
 } //---- Fin du constructeur Sensor
 
 Sensor::Sensor (list<string> fields)
 {
-    // Extract latitude and longitude
     latitude = atol(fields.front().c_str());
     fields.pop_front();
 
@@ -47,14 +60,14 @@ Sensor::Sensor (list<string> fields)
     fields.pop_front();
 
     #ifdef MAP
-        cout << "Appel au constructeur de <Sensor>" << endl;
+        std::cout << "Appel au constructeur de <Sensor>" << std::endl;
     #endif
 } //----- Fin du constructeur Sensor
 
 Sensor::~Sensor ( )
 {	
 	#ifdef MAP
-		cout << "Appel au destructeur de <Sensor>" << endl;
+		std::cout << "Appel au destructeur de <Sensor>" << std::endl;
 	#endif
 } //----- Fin de ~Sensor
 

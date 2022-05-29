@@ -9,8 +9,6 @@
 
 using std::string;
 using std::list;
-using std::cout;
-using std::endl;
 
 //------------------------------------------------------ Include personnel
 #include "Attribute.h"
@@ -31,25 +29,25 @@ string Attribute::getDescription()
     return description;
 }
 
+void Attribute::addMeasurement(const Measurement& m)
+{
+    measurements.push_back(m);
+}
+
+list<Measurement>& Attribute::getMeasurements()
+{
+    return measurements;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 Attribute::Attribute()
 {
     #ifdef MAP
-        cout << "Appel au constructeur par défaut de <Attribute>" << endl;
+        std::cout << "Appel au constructeur par défaut de <Attribute>" << std::endl;
     #endif
 }//----- Fin de Attribute
-
-Attribute::Attribute(const Attribute &obj)
-{
-    unit = obj.unit;
-    description = obj.description;
-
-    #ifdef MAP
-        cout << "Appel au constructeur de copie de <Attribute>" << endl;
-    #endif
-}//----- Fin de Attribute (constructeur de copie)
 
 Attribute::Attribute(list<string> fields)
 {
@@ -59,14 +57,14 @@ Attribute::Attribute(list<string> fields)
     fields.pop_front();
 
     #ifdef MAP
-		cout << "Appel au constructeur de <Attribute>" << endl;
+		std::cout << "Appel au constructeur de <Attribute>" << std::endl;
 	#endif
 }//----- Fin du constructeur Attribute
 
 Attribute::~Attribute ( )
 {	
 	#ifdef MAP
-		cout << "Appel au destructeur de <Attribute>" << endl;
+		std::cout << "Appel au destructeur de <Attribute>" << std::endl;
 	#endif
 } //----- Fin de ~Attribute
 
@@ -74,11 +72,3 @@ Attribute::~Attribute ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
-std::ostream& operator<<(std::ostream& os, const Attribute& attribute)
-{
-    os << "{ " << attribute.unit << ", " << attribute.description << " }";
-    return os;
-}
-
-

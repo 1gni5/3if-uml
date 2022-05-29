@@ -28,13 +28,17 @@ public:
 
 	void testDeserialize(void)
 	{
-		map<string, Provider> mp = singleKeyDeserialize<Provider>("datasets/providers.csv", 0);
+		map<string, Provider> data;
+		deserialize<Provider>(
+			"datasets/providers.csv", 
+			data, 0
+		);
 
 		// Should contains 2 different providers
-		TS_ASSERT_EQUALS(mp.size(), 2);
+		TS_ASSERT_EQUALS(data.size(), 2);
 
 		// Check that the providers are well deserialized
-		Provider provider = mp["Provider0"];
+		Provider provider = data["Provider0"];
         TS_ASSERT_EQUALS(provider.getCleaner(), "Cleaner0");
 	}
 };

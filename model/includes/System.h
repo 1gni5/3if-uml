@@ -1,12 +1,21 @@
-//------------- Interface de la classe <User> ----------------------------
-#if ! defined ( USER_H )
-#define USER_H
+//---------- Interface de la classe <System> -----------------------------
+#if ! defined ( SYSTEM_H )
+#define SYSTEM_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <map>
 #include <string>
-#include <list>
 
 using std::string;
+using std::map;
+using std::multimap;
+
+#include "Attribute.h"
+#include "Cleaner.h"
+#include "Measurement.h"
+#include "Provider.h"
+#include "Sensor.h"
+#include "User.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -14,18 +23,16 @@ using std::string;
 
 //------------------------------------------------------------------------
 
-class User
+class System 
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	string getSensor();
 
 //-------------------------------------------- Constructeurs - destructeur
-	User();
-    User(std::list<string> fields);
-    virtual ~User();
+    System ();
+    virtual ~System ();
 
 //------------------------------------------------------------------ PRIVE
 
@@ -33,9 +40,14 @@ private:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    string sensor;
+    map<string, Attribute> attributes;
+    map<string, Cleaner> cleaners;
+    multimap<string, Measurement> measurements;
+    map<string, Provider> providers;
+    map<string, Sensor> sensors;
+    map<string, User> users;
 };
 
-//-------------------------- Autres définitions dépendantes de <User> ----
+//----------------------- Autres définitions dépendantes de <System> -----
 
-#endif // USER_H
+#endif // SYSTEM_H

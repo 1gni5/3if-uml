@@ -30,13 +30,17 @@ public:
 
 	void testDeserialize(void)
 	{
-		map<string, Sensor> mp = singleKeyDeserialize<Sensor>("datasets/sensors.csv", 0);
+        map<string, Sensor> data;
+        deserialize<Sensor>(
+            "datasets/sensors.csv", 
+            data, 0
+        );
 
 		// Should contains 100 different sensors
-		TS_ASSERT_EQUALS(mp.size(), 100);
+		TS_ASSERT_EQUALS(data.size(), 100);
 
 		// Check that the sensors are well deserialized
-		Sensor sensor = mp["Sensor0"];
+		Sensor sensor = data["Sensor0"];
 		TS_ASSERT_EQUALS((int) sensor.getLatitude(), 44);
 		TS_ASSERT_EQUALS((int) sensor.getLongitude(), -1);
 	}

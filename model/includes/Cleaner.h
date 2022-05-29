@@ -1,4 +1,4 @@
-//---------- Interface de la classe <cleaner> ----------------------------
+//---------- Interface de la classe <Cleaner> ----------------------------
 #if ! defined ( CLEANER_H )
 #define CLEANER_H
 
@@ -43,7 +43,6 @@ private:
     time_t stop;
 };
 
-//-------------------------- Autres définitions dépendantes de <Attribute>
-time_t parseDateTime(string fdate, string fmt);
+//---------------------------- Autres définitions dépendantes de <Cleaner>
 
 #endif // CLEANER_H

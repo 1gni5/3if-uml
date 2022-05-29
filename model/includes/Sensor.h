@@ -1,4 +1,4 @@
-//---------- Interface de la classe <cleaner> ----------------------------
+//---------- Interface de la classe <Sensor> -----------------------------
 #if ! defined ( SENSOR_H )
 #define SENSOR_H
 
@@ -7,6 +7,8 @@
 #include <list>
 
 using std::string;
+
+#include "Measurement.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -23,6 +25,9 @@ public:
 	long getLongitude();
 	long getLatitude();
 
+	void addMeasurement(const Measurement& m);
+	std::list<Measurement>& getMeasurements();
+
 //-------------------------------------------- Constructeurs - destructeur
 	Sensor();
     Sensor(std::list<string> fields);
@@ -36,8 +41,10 @@ private:
 //----------------------------------------------------- Attributs protégés
 	long latitude;
 	long longitude;
+
+	std::list<Measurement> measurements;
 };
 
-//-------------------------- Autres définitions dépendantes de <Attribute>
+//----------------------------- Autres définitions dépendantes de <Sensor>
 
 #endif // SENSOR_H

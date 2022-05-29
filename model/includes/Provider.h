@@ -1,4 +1,4 @@
-//---------- Interface de la classe <cleaner> ----------------------------
+//---------- Interface de la classe <Provider> ---------------------------
 #if ! defined ( PROVIDER_H )
 #define PROVIDER_H
 
@@ -37,6 +37,6 @@ private:
     string cleaner;
 };
 
-//-------------------------- Autres définitions dépendantes de <Attribute>
+//--------------------------- Autres définitions dépendantes de <Provider>
 
 #endif // PROVIDER_H

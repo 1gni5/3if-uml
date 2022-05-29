@@ -1,4 +1,4 @@
-//---------- Réalisation de la classe <user> --------------------------
+//---------- Réalisation de la classe <User> -----------------------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -21,7 +21,9 @@ using std::list;
 
 
 string User::getSensor()
-{ return sensor; }
+{ 
+	return sensor; 
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -30,24 +32,23 @@ string User::getSensor()
 User::User ()
 {
 	#ifdef MAP
-		cout << "Appel au constructeur de <User>" << endl;
+		std::cout << "Appel au constructeur de <User>" << std::endl;
 	#endif
 } //---- Fin du constructeur User
 
 User::User (list<string> fields)
 {
-	// Extract Sensor
     sensor = fields.front();
 
     #ifdef MAP
-        cout << "Appel au constructeur de <User>" << endl;
+        std::cout << "Appel au constructeur de <User>" << std::endl;
     #endif
 } //----- Fin du constructeur User
 
 User::~User ( )
 {	
 	#ifdef MAP
-		cout << "Appel au destructeur de <User>" << endl;
+		std::cout << "Appel au destructeur de <User>" << std::endl;
 	#endif
 } //----- Fin de ~User
 

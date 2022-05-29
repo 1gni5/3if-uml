@@ -15,6 +15,7 @@ using std::tm;
 
 //------------------------------------------------------ Include personnel
 #include "Measurement.h"
+#include "Utilities.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -23,13 +24,24 @@ using std::tm;
 //----------------------------------------------------- Méthodes publiques
 
 time_t Measurement::getTimestamp()
-{ return timestamp; }
+{ 
+    return timestamp; 
+}
+
+string Measurement::getSensor()
+{ 
+    return sensor; 
+}
 
 string Measurement::getUnit()
-{ return unit; }
+{ 
+    return unit; 
+}
 
 double Measurement::getValue()
-{ return value; }
+{ 
+    return value; 
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -38,13 +50,17 @@ double Measurement::getValue()
 Measurement::Measurement ()
 {
 	#ifdef MAP
-		cout << "Appel au constructeur de <Measurement>" << endl;
+		std::cout << "Appel au constructeur de <Measurement>" << std::endl;
 	#endif
 } //---- Fin du constructeur Measurement
 
 Measurement::Measurement (list<string> fields)
 {
+    
     timestamp = parseDateTime(fields.front(), "%Y-%m-%d %H:%M:%S");
+    fields.pop_front();
+
+    sensor = fields.front();
     fields.pop_front();
 
     unit = fields.front();
@@ -54,14 +70,14 @@ Measurement::Measurement (list<string> fields)
     fields.pop_front();
 
     #ifdef MAP
-        cout << "Appel au constructeur de <Measurement>" << endl;
+        std::cout << "Appel au constructeur de <Measurement>" << std::endl;
     #endif
 } //----- Fin du constructeur Measurement
 
 Measurement::~Measurement ( )
 {	
 	#ifdef MAP
-		cout << "Appel au destructeur de <Measurement>" << endl;
+		std::cout << "Appel au destructeur de <Measurement>" << std::endl;
 	#endif
 } //----- Fin de ~Measurement
 
